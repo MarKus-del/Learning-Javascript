@@ -35,10 +35,6 @@ mongoose.connect(URL_BD, {
 // iniciando app 
 const app = express();
 
-// adicionando algumas medidas de segurança
-app.use(helmet());
-app.use(csrf());
-
 // adicionando arquivos estaticos, parseando de arquivos json e texto
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -59,6 +55,10 @@ const sessionOptions = session({
 // utilizando as sessões
 app.use(sessionOptions);
 app.use(flash());
+
+// adicionando algumas medidas de segurança
+app.use(helmet());
+app.use(csrf());
 
 // adicionando paginas e template engine
 app.set('views', path.resolve(__dirname, 'src', 'views'));
